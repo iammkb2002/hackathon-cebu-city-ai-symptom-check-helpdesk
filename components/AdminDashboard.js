@@ -66,7 +66,7 @@ const AdminDashboard = () => {
                       </select>
                     </td>
                     <td className="py-2 px-4 border-b">
-                      {loading ? <span className="loading loading-spinner"></span> : <span>Updated</span>}
+                      {loading ? <span>Updating..</span> : <span>Updated</span>}
                     </td>
                   </tr>
                 ))}
