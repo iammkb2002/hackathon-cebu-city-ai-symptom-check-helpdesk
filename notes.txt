@@ -1,0 +1,1 @@
+i have a .env.local file i didnt include for security
