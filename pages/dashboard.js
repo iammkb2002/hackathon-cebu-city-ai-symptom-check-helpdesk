@@ -1,12 +1,12 @@
-// pages/dashboard.js
 import React from 'react';
 import withAuth from '../hoc/withAuth';
+import UserDashboard from '../components/UserDashboard';
 import NavBar from '../components/NavBar';
 
 const Dashboard = () => (
-  <div>
+  <div className="min-h-screen bg-gray-50">
     <NavBar />
-    <h1>Dashboard</h1>
+    <UserDashboard />
   </div>
 );
 

@@ -4,7 +4,9 @@ import withAuth from '../../hoc/withAuth';
 import AdminDashboard from '../../components/AdminDashboard';
 
 const Users = () => (
-  <AdminDashboard />
+  <div className="min-h-screen bg-gray-50">
+    <AdminDashboard />
+  </div>
 );
 
 export default withAuth(Users, true);

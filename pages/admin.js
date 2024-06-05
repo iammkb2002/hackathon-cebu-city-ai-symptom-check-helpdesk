@@ -1,10 +1,11 @@
-// pages/admin.js
 import React from 'react';
 import withAuth from '../hoc/withAuth';
 import AdminDashboard from '../components/AdminDashboard';
+import NavBar from '../components/NavBar';
 
 const Admin = () => (
-  <div>
+  <div className="min-h-screen bg-gray-50">
+    <NavBar />
     <AdminDashboard />
   </div>
 );

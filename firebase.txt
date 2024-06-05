@@ -1,3 +1,4 @@
+NOTE: Update this file to be exactly the same as the actual firebase configurations for consistent context
 collections:
 - users
 
