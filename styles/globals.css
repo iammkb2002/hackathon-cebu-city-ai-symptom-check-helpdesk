@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'flowbite/dist/flowbite.css';
+@import "flowbite/dist/flowbite.css";
 
 body {
-  @apply font-sans text-gray-900 bg-gray-50;
+    @apply font-sans text-gray-900 bg-gray-50;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-bold;
 }
 
 p {
-  @apply mb-4;
+    @apply mb-4;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
