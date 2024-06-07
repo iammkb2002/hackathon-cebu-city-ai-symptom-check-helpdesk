@@ -41,7 +41,7 @@ const Home = () => {
                     <div className="pl-4 flex items-center">
                         <a
                             className="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                            href="#"
+                            href="/"
                         >
                             {/* HAND SVG */}
                             <svg
@@ -89,26 +89,18 @@ const Home = () => {
                         <ul className="list-reset lg:flex justify-end flex-1 items-center">
                             <li className="mr-3">
                                 <a
-                                    className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                    href="#"
+                                    className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                                    href="/prediction"
                                 >
-                                    Active
+                                    Symptom Detection
                                 </a>
                             </li>
                             <li className="mr-3">
                                 <a
                                     className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                                    href="#"
+                                    href="/chatbot"
                                 >
-                                    link
-                                </a>
-                            </li>
-                            <li className="mr-3">
-                                <a
-                                    className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                                    href="#"
-                                >
-                                    link
+                                    Assistance
                                 </a>
                             </li>
                         </ul>
@@ -120,7 +112,7 @@ const Home = () => {
                                     : ""
                             }`}
                         >
-                            Action
+                            Home
                         </button>
                     </div>
                 </div>
@@ -196,25 +188,23 @@ const Home = () => {
                     <div className="flex flex-wrap">
                         <div className="w-5/6 sm:w-1/2 p-6">
                             <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                                Sub Title
+                                Basic Symptom Detection
                             </h3>
                             <p className="text-gray-600 mb-8">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                                dignissim posuere nulla, id vulputate nisl dapibus nec. Nullam eget
-                                arcu in elit venenatis pulvinar. Praesent at ligula venenatis,
-                                gravida nibh ut, scelerisque lectus. Sed eget urna sit amet arcu
-                                ultricies suscipit quis nec lorem.
+                                Navigate your health with our Symptom Checker, a smart tool that
+                                listens to your body’s whispers and guides you through a spectrum of
+                                conditions.
                                 <br />
                                 <br />
-                                <a className="text-pink-500 underline" href="#">
+                                <a className="text-pink-500 underline" href="/prediction">
                                     Learn More
                                 </a>
                             </p>
                         </div>
                         <div className="w-full sm:w-1/2 p-6">
                             <img
-                                className="w-full sm:h-64 mx-auto"
-                                src="hero.png"
+                                className="w-64 sm:h-64 mx-auto"
+                                src="headache.png"
                                 alt="Placeholder"
                             />
                         </div>
@@ -222,24 +212,24 @@ const Home = () => {
                     <div className="flex flex-wrap flex-col-reverse sm:flex-row">
                         <div className="w-full sm:w-1/2 p-6 mt-6">
                             <img
-                                className="w-full sm:h-64 mx-auto"
-                                src="hero.png"
+                                className="w-64 sm:h-64 mx-auto"
+                                src="assistant.png"
                                 alt="Placeholder"
                             />
                         </div>
                         <div className="w-full sm:w-1/2 p-6 mt-6">
                             <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                                Sub Title
+                                Health Assistance Guidance
                             </h3>
                             <p className="text-gray-600 mb-8">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                                dignissim posuere nulla, id vulputate nisl dapibus nec. Nullam eget
-                                arcu in elit venenatis pulvinar. Praesent at ligula venenatis,
-                                gravida nibh ut, scelerisque lectus. Sed eget urna sit amet arcu
-                                ultricies suscipit quis nec lorem.
+                                Embark on a journey to better health with our AI-powered guidance
+                                feature. It’s like having a wise health advisor in your
+                                pocket—interactive, intuitive, and always available. Get
+                                personalized insights and support that make navigating health
+                                assistance programs as simple as a conversation.
                                 <br />
                                 <br />
-                                <a className="text-pink-500 underline" href="#">
+                                <a className="text-pink-500 underline" href="/chatbot">
                                     Learn More
                                 </a>
                             </p>

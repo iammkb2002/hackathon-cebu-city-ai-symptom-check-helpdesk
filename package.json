@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider next dev",
+    "dev": "concurrently \"cross-env NODE_OPTIONS=--openssl-legacy-provider next dev\" \"nodemon --exec python pages/test.py\"",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.12.0",
     "autoprefixer": "10.3.1",
     "cross-env": "^7.0.3",
     "daisyui": "1.14.0",
     "dotenv": "^16.4.5",
-    "firebase": "8.6.8",
     "flowbite": "^2.3.0",
     "next": "11.0.1",
     "postcss": "8.3.6",
@@ -24,7 +24,9 @@
     "tailwindcss": "2.2.15"
   },
   "devDependencies": {
+    "concurrently": "^7.0.0",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.0.1"
+    "eslint-config-next": "11.0.1",
+    "nodemon": "^2.0.15"
   }
 }

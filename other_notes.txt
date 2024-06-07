@@ -1,1 +1,3 @@
 .env.local exists but is not included in the notebook for security
+
+GEMINI_API_KEY is an env variable
