@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 # Load the model
-model = pickle.load(open('./pages/tester', 'rb'))
+model = pickle.load(open('./pages/LightGBM', 'rb'))
 
 # Define the symptoms
 diseases = [
@@ -41,27 +41,27 @@ def predict():
     # Create a list of zeros
     features = [0] * len(symptoms)
 
-    # Set the corresponding indices to 1 for the symptoms present in the data
-    for symptom in data:
+    # Iterate through the symptoms and set the corresponding indices to probabilities
+    for symptom, prob in data.items():
         if symptom in symptoms:
             index = symptoms.index(symptom)
-            features[index] = 1
+            features[index] = prob
 
     # Make prediction using the model
     proba = model.predict_proba([features])
 
-    # Get the indices and probabilities of the top 5 classes
-    top5_idx = np.argsort(proba[0])[-5:][::-1]
-    top5_proba = np.sort(proba[0])[-5:][::-1]
+    # Get the indices and probabilities of the top 3 classes
+    top3_idx = np.argsort(proba[0])[-3:][::-1]
+    top3_proba = np.sort(proba[0])[-3:][::-1]
 
-    # Get the names of the top 5 diseases
-    top5_diseases = [diseases[i] for i in top5_idx]
+    # Get the names of the top 3 diseases
+    top3_diseases = [diseases[i] for i in top3_idx]
 
     # Prepare the response
     response = []
-    for i in range(5):
-        disease = top5_diseases[i]
-        probability = top5_proba[i]
+    for i in range(3):
+        disease = top3_diseases[i]
+        probability = top3_proba[i]
 
         # Get the disease description
         disp = desc[desc['Disease'] == disease].values[0][1] if disease in desc["Disease"].unique() else "No description available"
@@ -83,6 +83,7 @@ def predict():
 
     # Send back to the client
     return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
