@@ -138,7 +138,7 @@ const MedicalDiagnosisApp = () => {
     ];
 
     const addSymptom = () => {
-        if (selectedSymptom && !selectedSymptoms.includes(selectedSymptom)) {
+        if (selectedSymptom && !selectedSymptoms.some(symptom => symptom.value === selectedSymptom.value)) {
             setSelectedSymptoms([...selectedSymptoms, selectedSymptom]);
             setSelectedSymptom(null);
         }

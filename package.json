@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider next dev",
+    "dev": "concurrently \"cross-env NODE_OPTIONS=--openssl-legacy-provider next dev\" \"nodemon --exec python pages/test.py\"",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider next start",
     "lint": "next lint"
@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "11.0.1"
+    "eslint-config-next": "11.0.1",
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
   }
 }

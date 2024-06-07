@@ -7,7 +7,7 @@ import pandas as pd
 # Load the model
 model = pickle.load(open('./pages/tester', 'rb'))
 
-# Define the symptoms
+# Define the symptoms and diseases
 diseases = [
     '(vertigo) Paroymsal  Positional Vertigo', 'AIDS', 'Acne', 'Alcoholic hepatitis', 'Allergy', 
     'Arthritis', 'Bronchial Asthma', 'Cervical spondylosis', 'Chicken pox', 'Chronic cholestasis', 
@@ -37,12 +37,15 @@ def home():
 def predict():
     # Get the data from the POST request
     data = request.get_json(force=True)
+    
+    # Log received data
+    print("Received data:", data)
 
     # Create a list of zeros
     features = [0] * len(symptoms)
 
     # Set the corresponding indices to 1 for the symptoms present in the data
-    for symptom in data:
+    for symptom in data['selectedSymptoms']:
         if symptom in symptoms:
             index = symptoms.index(symptom)
             features[index] = 1
