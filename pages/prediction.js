@@ -185,7 +185,7 @@ const MedicalDiagnosisApp = () => {
                 </h1>
                 <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
                     <Select
-                        options={symptomsList}
+                        options={symptoms_list}
                         value={selectedSymptom}
                         onChange={setSelectedSymptom}
                         placeholder="Select a symptom..."
