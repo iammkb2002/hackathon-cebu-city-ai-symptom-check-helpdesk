@@ -37,8 +37,8 @@ const MedicalDiagnosisApp = () => {
                 prediction.precautions.forEach(precaution => {
                     if (precaution.toLowerCase().includes("consult")) {
                         const specializationIndex = specializations[prediction.disease];
-                        Object.keys(hospitalsData).forEach(hospital => {
-                            if (hospitalsData[hospital][specializationIndex] === 1) {
+                        Object.keys(hospitals_data).forEach(hospital => {
+                            if (hospitals_data[hospital][specializationIndex] === 1) {
                                 if (!categorizedHospitals[prediction.disease]) {
                                     categorizedHospitals[prediction.disease] = [];
                                 }
