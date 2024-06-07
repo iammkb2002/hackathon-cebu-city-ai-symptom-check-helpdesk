@@ -59,7 +59,7 @@ const MedicalDiagnosisApp = () => {
         <div>
             <h1>Medical Diagnosis App</h1>
             <Select
-                options={symptomsList}
+                options={symptoms_list}
                 isMulti // allow multiple selections
                 value={selectedSymptoms}
                 onChange={setSelectedSymptoms}
