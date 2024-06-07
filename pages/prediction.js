@@ -3,7 +3,6 @@ import Select from "react-select";
 import symptoms_list from "../public/symptoms_list"; // Adjust the import path as necessary
 import { hospitals_data, specializations } from "../public/hospitals_data"; // Adjust the import path as necessary
 
-
 const MedicalDiagnosisApp = () => {
     const [selectedSymptom, setSelectedSymptom] = useState(null);
     const [selectedSymptoms, setSelectedSymptoms] = useState([]);
@@ -14,11 +13,13 @@ const MedicalDiagnosisApp = () => {
         if (selectedSymptom && !selectedSymptoms.some(symptom => symptom.value === selectedSymptom.value)) {
             setSelectedSymptoms([...selectedSymptoms, selectedSymptom]);
             setSelectedSymptom(null);
+            console.log("Added symptom:", selectedSymptom);
         }
     };
 
     const predictDisease = async () => {
         try {
+            console.log("Sending symptoms for prediction:", selectedSymptoms);
             const response = await fetch("http://127.0.0.1:5000/predict", {
                 method: "POST",
                 headers: {
@@ -29,6 +30,7 @@ const MedicalDiagnosisApp = () => {
                 }),
             });
             const data = await response.json();
+            console.log("Prediction response data:", data);
             setPredictions(data);
 
             const categorizedHospitals = {};
@@ -49,6 +51,7 @@ const MedicalDiagnosisApp = () => {
                 });
             });
 
+            console.log("Categorized hospitals:", categorizedHospitals);
             setHospitalSuggestions(categorizedHospitals);
         } catch (error) {
             console.error("There was an error predicting the disease:", error);

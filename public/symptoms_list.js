@@ -1,4 +1,4 @@
-// symptomsList.js
+// symptoms_list.js
 const symptoms_list = [
   { value: "itching", label: "Itching" },
   { value: "skin_rash", label: "Skin Rash" },
