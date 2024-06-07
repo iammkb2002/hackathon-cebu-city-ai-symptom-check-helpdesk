@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 const Home = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const router = useRouter();
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
@@ -23,6 +25,10 @@ const Home = () => {
         };
     }, []);
 
+    const handleStartClick = () => {
+        router.push("/prediction");
+    };
+
     return (
         <div className="leading-normal tracking-normal text-white gradient">
             <nav
@@ -37,22 +43,22 @@ const Home = () => {
                             className="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
                             href="#"
                         >
+                            {/* HAND SVG */}
                             <svg
                                 className="h-8 fill-current inline"
+                                width="32px"
+                                height="32px"
+                                viewBox="0 0 24 24"
+                                fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512.005 512.005"
                             >
-                                <rect
-                                    fill="#2a2a31"
-                                    x="16.539"
-                                    y="425.626"
-                                    width="479.767"
-                                    height="50.502"
-                                    transform="matrix(1,0,0,1,0,0)"
+                                <path
+                                    d="M7 4.82936C7 6.37714 8.72593 8.00761 10.1497 9.08932C10.9489 9.69644 11.3484 10 12 10C12.6516 10 13.0512 9.69644 13.8503 9.08933C15.2741 8.00763 17 6.37717 17 4.82935C17 2.03918 14.2499 0.997463 12 3.15285C9.75008 0.997463 7 2.03918 7 4.82936Z"
+                                    fill={isScrolled ? "#1C274C" : "#FFFFFF"}
                                 />
                                 <path
-                                    className="plane-take-off"
-                                    d="M510.7 189.151C505.271 168.95 484.565 156.956 464.365 162.385L330.156 198.367L155.924 35.878L107.19 49.008L211.729 230.183L86.232 263.767L36.614 224.754L0 234.603L45.957 314.27L65.274 347.727L105.802 336.869L240.011 300.886L349.726 271.469L483.935 235.486C504.134 230.057 516.129 209.352 510.7 189.151Z"
+                                    d="M6.25993 21.3884H6C5.05719 21.3884 4.58579 21.3884 4.29289 21.0955C4 20.8026 4 20.3312 4 19.3884V18.2764C4 17.7579 4 17.4987 4.13318 17.2672C4.26636 17.0356 4.46727 16.9188 4.8691 16.6851C7.51457 15.1464 11.2715 14.2803 13.7791 15.7759C13.9475 15.8764 14.0991 15.9977 14.2285 16.1431C14.7866 16.77 14.746 17.7161 14.1028 18.2775C13.9669 18.396 13.8222 18.486 13.6764 18.5172C13.7962 18.5033 13.911 18.4874 14.0206 18.4699C14.932 18.3245 15.697 17.8375 16.3974 17.3084L18.2046 15.9433C18.8417 15.462 19.7873 15.4619 20.4245 15.943C20.9982 16.3762 21.1736 17.0894 20.8109 17.6707C20.388 18.3487 19.7921 19.216 19.2199 19.7459C18.6469 20.2766 17.7939 20.7504 17.0975 21.0865C16.326 21.4589 15.4738 21.6734 14.6069 21.8138C12.8488 22.0983 11.0166 22.0549 9.27633 21.6964C8.29253 21.4937 7.27079 21.3884 6.25993 21.3884Z"
+                                    fill={isScrolled ? "#1C274C" : "#FFFFFF"}
                                 />
                             </svg>
                             AskForHealth
@@ -130,12 +136,15 @@ const Home = () => {
                         <p className="leading-normal text-2xl mb-8">
                             Sub-hero message, not too long and not too short. Make it just right!
                         </p>
-                        <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                        <button
+                            onClick={handleStartClick}
+                            className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                        >
                             Start
                         </button>
                     </div>
-                    <div className="w-full md:w-3/5 py-6 text-center">
-                        <img className="w-full md:w-4/5 z-50" src="hero.png" alt="Hero" />
+                    <div className="w-full md:w-3/5 py-6 lg:pl-16 text-center">
+                        <img className="w-full md:w-4/5 z-50" src="landing.png" alt="Hero" />
                     </div>
                 </div>
             </div>
@@ -240,106 +249,11 @@ const Home = () => {
             </section>
             <footer className="bg-gray-900">
                 <div className="container mx-auto py-8">
-                    <div className="flex flex-wrap">
-                        <div className="w-full md:w-1/4 p-6">
-                            <h4 className="text-white font-bold mb-4">Column 1</h4>
-                            <ul>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 3
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 4
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="w-full md:w-1/4 p-6">
-                            <h4 className="text-white font-bold mb-4">Column 2</h4>
-                            <ul>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 3
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 4
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="w-full md:w-1/4 p-6">
-                            <h4 className="text-white font-bold mb-4">Column 3</h4>
-                            <ul>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 3
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 4
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="w-full md:w-1/4 p-6">
-                            <h4 className="text-white font-bold mb-4">Column 4</h4>
-                            <ul>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 3
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="text-gray-300 hover:text-gray-100">
-                                        Link 4
-                                    </a>
-                                </li>
-                            </ul>
+                    <div className="flex flex-wrap justify-center">
+                        <div className="w-full text-center">
+                            <p className="text-gray-300">
+                                &copy; 2024 CITeam. All Rights Reserved.
+                            </p>
                         </div>
                     </div>
                 </div>
