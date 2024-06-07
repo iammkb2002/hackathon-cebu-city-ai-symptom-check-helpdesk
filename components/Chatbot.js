@@ -1,52 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Chatbot = () => {
-  const [chat, setChat] = useState([
-    {
-      text: "Hello! I'm your health assistance guide. How can I help you today? Here are a few options to get started, or feel free to type your question.",
-      options: [
-        "Learn about health assistance programs",
-        "Check eligibility for a program",
-        "Find a nearby hospital",
-        "Understand required documents",
-        "Talk to a human representative"
-      ]
-    }
-  ]);
-  const [userInput, setUserInput] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const fetchResponse = async (prompt) => {
-    setLoading(true);
-    const geminiApiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-
-    try {
-      const response = await fetch('/api/gemini', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    const [chat, setChat] = useState([
+        {
+            text: "Hello! I'm your health assistance guide. How can I help you today? Here are a few options to get started, or feel free to type your question.",
+            options: [
+                "Learn about health assistance programs",
+                "Check eligibility for a program",
+                "Find a nearby hospital",
+                "Understand required documents",
+                "Talk to a human representative",
+            ],
         },
-        body: JSON.stringify({ prompt, geminiApiKey }),
-      });
+    ]);
+    const [userInput, setUserInput] = useState("");
+    const [loading, setLoading] = useState(false);
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+    const fetchResponse = async (prompt) => {
+        setLoading(true);
+        const geminiApiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
-      const data = await response.json();
-      return data.response;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return "I'm sorry, something went wrong. Please try again.";
-    } finally {
-      setLoading(false);
-    }
-  };
+        try {
+            const response = await fetch("/api/gemini", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ prompt, geminiApiKey }),
+            });
 
-  const handleOptionClick = async (option) => {
-    setChat([...chat, { text: option }]);
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
 
-    const prompt = `The user selected: ${option}. Respond with detailed information from the following dataset:
+            const data = await response.json();
+            return data.response;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            return "I'm sorry, something went wrong. Please try again.";
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleOptionClick = async (option) => {
+        setChat([...chat, { text: option }]);
+
+        const prompt = `The user selected: ${option}. Respond with detailed information from the following dataset:
 
     **Chatbot Prompt for "Ask for Health":**
 
@@ -345,14 +345,14 @@ const Chatbot = () => {
 
     Feel free to expand on this structure or customize it further based on specific user interactions and needs.`;
 
-    const response = await fetchResponse(prompt);
+        const response = await fetchResponse(prompt);
 
-    setChat([...chat, { text: option }, { text: response }]);
-  };
+        setChat([...chat, { text: option }, { text: response }]);
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const prompt = `User input: ${userInput}. Respond with detailed information from the following dataset:
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const prompt = `User input: ${userInput}. Respond with detailed information from the following dataset:
 
     **Chatbot Prompt for "Ask for Health":**
 
@@ -651,54 +651,54 @@ const Chatbot = () => {
 
     Feel free to expand on this structure or customize it further based on specific user interactions and needs.`;
 
-    const response = await fetchResponse(prompt);
+        const response = await fetchResponse(prompt);
 
-    setChat([...chat, { text: userInput }, { text: response }]);
-    setUserInput('');
-  };
+        setChat([...chat, { text: userInput }, { text: response }]);
+        setUserInput("");
+    };
 
-  return (
-    <div className="p-6 max-w-lg mx-auto bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Health Assistance Chatbot</h2>
-      <div className="mb-4">
-        {chat.map((message, index) => (
-          <div key={index} className="mb-2">
-            <p>{message.text}</p>
-            {message.options && (
-              <div className="flex flex-col">
-                {message.options.map((option, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleOptionClick(option)}
-                    className="my-1 py-2 px-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
-                    disabled={loading}
-                  >
-                    {option}
-                  </button>
+    return (
+        <div className="p-6 max-w-2xl mx-auto bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4">Health Assistance Chatbot</h2>
+            <div className="mb-4">
+                {chat.map((message, index) => (
+                    <div key={index} className="mb-2">
+                        <p>{message.text}</p>
+                        {message.options && (
+                            <div className="flex flex-col">
+                                {message.options.map((option, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => handleOptionClick(option)}
+                                        className="my-1 py-2 px-4 bg-pink text-white font-semibold rounded hover:bg-lightpink"
+                                        disabled={loading}
+                                    >
+                                        {option}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          className="w-full p-3 border rounded mb-4"
-          placeholder="Type your question here..."
-          rows="3"
-        />
-        <button
-          type="submit"
-          className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
-          disabled={loading}
-        >
-          {loading ? 'Loading...' : 'Send'}
-        </button>
-      </form>
-    </div>
-  );
+            </div>
+            <form onSubmit={handleSubmit}>
+                <textarea
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    className="w-full p-3 border rounded mb-4"
+                    placeholder="Type your question here..."
+                    rows="3"
+                />
+                <button
+                    type="submit"
+                    className="w-full py-2 px-4 bg-pink text-white font-semibold rounded hover:bg-lightpink"
+                    disabled={loading}
+                >
+                    {loading ? "Loading..." : "Send"}
+                </button>
+            </form>
+        </div>
+    );
 };
 
 export default Chatbot;

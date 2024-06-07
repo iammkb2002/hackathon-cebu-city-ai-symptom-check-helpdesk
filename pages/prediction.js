@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import symptoms_list from "../public/symptoms_list"; // Adjust the import path as necessary
-import { hospitals_data, specializations } from "../public/hospitals_data"; // Adjust the import path as necessary
 import "tailwindcss/tailwind.css";
+import { hospitals_data, specializations } from "../public/hospitals_data"; // Adjust the import path as necessary
+import symptoms_list from "../public/symptoms_list"; // Adjust the import path as necessary
 
 const MedicalDiagnosisApp = () => {
     const [selectedSymptom, setSelectedSymptom] = useState(null);
@@ -34,7 +34,10 @@ const MedicalDiagnosisApp = () => {
     const [hospitalSuggestions, setHospitalSuggestions] = useState([]);
 
     const addSymptom = () => {
-        if (selectedSymptom && !selectedSymptoms.some(symptom => symptom.value === selectedSymptom.value)) {
+        if (
+            selectedSymptom &&
+            !selectedSymptoms.some((symptom) => symptom.value === selectedSymptom.value)
+        ) {
             setSelectedSymptoms([...selectedSymptoms, selectedSymptom]);
             setSelectedSymptom(null);
             console.log("Added symptom:", selectedSymptom);
@@ -59,11 +62,11 @@ const MedicalDiagnosisApp = () => {
 
             const categorizedHospitals = {};
 
-            data.forEach(prediction => {
-                prediction.precautions.forEach(precaution => {
+            data.forEach((prediction) => {
+                prediction.precautions.forEach((precaution) => {
                     if (precaution.toLowerCase().includes("consult")) {
                         const specializationIndex = specializations[prediction.disease];
-                        Object.keys(hospitals_data).forEach(hospital => {
+                        Object.keys(hospitals_data).forEach((hospital) => {
                             if (hospitals_data[hospital][specializationIndex] === 1) {
                                 if (!categorizedHospitals[prediction.disease]) {
                                     categorizedHospitals[prediction.disease] = [];
@@ -95,7 +98,7 @@ const MedicalDiagnosisApp = () => {
                         <div className="pl-4 flex items-center">
                             <a
                                 className="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                                href="/#"
+                                href="/"
                             >
                                 {/* HAND SVG */}
                                 <svg
@@ -143,26 +146,18 @@ const MedicalDiagnosisApp = () => {
                             <ul className="list-reset lg:flex justify-end flex-1 items-center">
                                 <li className="mr-3">
                                     <a
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        href="#"
+                                        className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                                        href="/prediction"
                                     >
-                                        Active
+                                        Symptom Detection
                                     </a>
                                 </li>
                                 <li className="mr-3">
                                     <a
                                         className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                                        href="#"
+                                        href="/chatbot"
                                     >
-                                        link
-                                    </a>
-                                </li>
-                                <li className="mr-3">
-                                    <a
-                                        className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                                        href="#"
-                                    >
-                                        link
+                                        Assistance
                                     </a>
                                 </li>
                             </ul>
@@ -174,7 +169,7 @@ const MedicalDiagnosisApp = () => {
                                         : ""
                                 }`}
                             >
-                                Action
+                                Home
                             </button>
                         </div>
                     </div>
